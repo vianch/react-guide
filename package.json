@@ -1,0 +1,26 @@
+{
+  "name": "react-guide",
+  "version": "1.0.0",
+  "description": "React code guide",
+  "main": "index.js",
+  "repository": "https://github.com/vianch/react-guide.git",
+  "author": "Victor Chavarro <victor.chavarro@zagalabs.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-scripts": "^2.1.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

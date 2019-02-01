@@ -1,0 +1,9 @@
+.person-wrapper {
+  width: 80%;
+  margin: 5px auto 15px;
+  border: 1px dotted #eee;
+  box-shadow: 0 2px 3px #ccc;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+}
