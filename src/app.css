@@ -1,3 +1,15 @@
 .app-wrapper {
   text-align: center;
 }
+
+.font-color-red {
+  color: #AB2108;
+}
+
+.font-color-green {
+  color: #AB2108;
+}
+
+.bold {
+  font-weight: bold;
+}
