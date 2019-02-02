@@ -6,21 +6,17 @@ import Person from './person/person'
 class App extends Component {
   state = {
     persons: [
-      { name: 'Carlos', age: 28 },
-      { name: 'Alberto', age: 31 },
-      { name: 'Juliana', age: 22 },
+      { id: '49dfd724-4f47-4729-b83c-ca46636f45dd', name: 'Carlos', age: 28 },
+      { id: '5bbcc9e7-2041-417f-a696-e8adf302a883', name: 'Alberto', age: 31 },
+      { id: '5778a524-71dd-428a-9d45-0a63ee91cbcf', name: 'Juliana', age: 22 },
     ],
   };
 
-  switchNameHandler(newName) {
-    // this.state.setStaz
-    this.setState({
-      persons: [
-        { name: newName, age: 1 },
-        { name: 'Random Name 1', age: 2 },
-        { name: 'Random name 2', age: 3 },
-      ]
-    });
+  deletePersonHandler(personIndex) {
+    const persons = [ ...this.state.persons ];
+
+    persons.splice(personIndex, 1);
+    this.setState({ persons });
   }
 
   nameChangedHandler(event) {
@@ -54,21 +50,15 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div className="person-container">
-          {this.state.persons.map( person => {
+          {this.state.persons.map( (person, index) => {
             return (
-              <Person name={person.name} age={person.age}  />
+              <Person
+                name={person.name}
+                age={person.age}
+                deletePersonHandler={this.deletePersonHandler.bind(this, index)}
+                key={person.id}/>
             );
           })}
-
-
-          <Person
-            changeDataEvent={this.switchNameHandler.bind(this, 'Victor!')}
-            onInpuntChange={this.nameChangedHandler.bind(this)}
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}>
-            With hobbies: Racing
-          </Person>
-         
         </div>
       );
     }
