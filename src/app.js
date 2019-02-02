@@ -54,19 +54,21 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div className="person-container">
+          {this.state.persons.map( person => {
+            return (
+              <Person name={person.name} age={person.age}  />
+            );
+          })}
+
+
           <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
             changeDataEvent={this.switchNameHandler.bind(this, 'Victor!')}
-            onInpuntChange={this.nameChangedHandler.bind(this)}/>
-          <Person
+            onInpuntChange={this.nameChangedHandler.bind(this)}
             name={this.state.persons[1].name}
             age={this.state.persons[1].age}>
             With hobbies: Racing
           </Person>
-          <Person
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age}/>
+         
         </div>
       );
     }
