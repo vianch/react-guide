@@ -48,11 +48,12 @@ class App extends Component {
       cursor: 'pointer',
       marginBottom: '10px'
     };
-    let titleStyle = ['font-color-red', 'bold'].join(' ');
+    let titleStyle = ['font-color-green'];
     let persons = null;
 
     if (this.state.showPersons) {
       buttonStyle.backgroundColor = '#AB2108';
+      titleStyle = ['font-color-red'];
 
       persons = (
         <div className="person-container">
@@ -72,7 +73,7 @@ class App extends Component {
 
     return (
       <div className="app-wrapper">
-        <h1 className={titleStyle}>LOADED REACT APP...</h1>
+        <h1 className={titleStyle.join(' ')}>LOADED REACT APP...</h1>
 
         <button
           style={buttonStyle}
