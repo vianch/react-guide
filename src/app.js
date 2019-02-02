@@ -40,7 +40,8 @@ class App extends Component {
 
   render() {
     const buttonStyle = {
-      backgroundColor: 'transparent',
+      backgroundColor: '#8EB307',
+      color: 'white',
       font: 'inherit',
       boder: '1px solid blue',
       padding: '8px',
@@ -51,6 +52,8 @@ class App extends Component {
     let persons = null;
 
     if (this.state.showPersons) {
+      buttonStyle.backgroundColor = '#AB2108';
+
       persons = (
         <div className="person-container">
           {this.state.persons.map( (person, index) => {
