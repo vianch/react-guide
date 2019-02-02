@@ -29,8 +29,14 @@ class App extends Component {
         { name: 'Random event name 0', age: 1 },
         { name: event.target.value, age: 1 },
         { name: 'Random event name 1', age: 1 },
-      ]
+      ],
     });
+  }
+
+  togglePersonHandler() {
+    this.setState({
+      showPersons: !this.state.showPersons,
+    })
   }
 
   render() {
@@ -49,22 +55,26 @@ class App extends Component {
 
         <button
           style={buttonStyle}
-          onClick={() => this.switchNameHandler('VictorMilian The second! [AVOID THIS SINTAXIS]')}>Switch name
+          onClick={() => this.togglePersonHandler()}>Toggle person list
         </button>
 
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          changeDataEvent={this.switchNameHandler.bind(this, 'Victor!')}
-          onInpuntChange={this.nameChangedHandler.bind(this)}/>
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age} >
-          With hobbies: Racing
-        </Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age} />
+        { this.state.showPersons ?
+          <div className="person-container">
+            <Person
+              name={this.state.persons[0].name}
+              age={this.state.persons[0].age}
+              changeDataEvent={this.switchNameHandler.bind(this, 'Victor!')}
+              onInpuntChange={this.nameChangedHandler.bind(this)}/>
+            <Person
+              name={this.state.persons[1].name}
+              age={this.state.persons[1].age}>
+              With hobbies: Racing
+            </Person>
+            <Person
+              name={this.state.persons[2].name}
+              age={this.state.persons[2].age}/>
+          </div> : null
+        }
       </div>
     );
   }
