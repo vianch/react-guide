@@ -49,6 +49,28 @@ class App extends Component {
       marginBottom: '10px'
     };
 
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div className="person-container">
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+            changeDataEvent={this.switchNameHandler.bind(this, 'Victor!')}
+            onInpuntChange={this.nameChangedHandler.bind(this)}/>
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}>
+            With hobbies: Racing
+          </Person>
+          <Person
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}/>
+        </div>
+      );
+    }
+
     return (
       <div className="app-wrapper">
         <h1>LOADED REACT APP...</h1>
@@ -58,23 +80,7 @@ class App extends Component {
           onClick={() => this.togglePersonHandler()}>Toggle person list
         </button>
 
-        { this.state.showPersons ?
-          <div className="person-container">
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-              changeDataEvent={this.switchNameHandler.bind(this, 'Victor!')}
-              onInpuntChange={this.nameChangedHandler.bind(this)}/>
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}>
-              With hobbies: Racing
-            </Person>
-            <Person
-              name={this.state.persons[2].name}
-              age={this.state.persons[2].age}/>
-          </div> : null
-        }
+        { persons }
       </div>
     );
   }
