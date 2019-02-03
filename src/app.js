@@ -39,20 +39,13 @@ class App extends Component {
   }
 
   render() {
-    const buttonStyle = {
-      backgroundColor: '#8EB307',
-      color: 'white',
-      font: 'inherit',
-      padding: '8px',
-      cursor: 'pointer',
-      marginBottom: '10px',
-    };
     let titleStyle = [cssStyles["font-color-green"]];
     let persons = null;
+    let buttonClass = '';
 
     if (this.state.showPersons) {
-      buttonStyle.backgroundColor = '#AB2108';
       titleStyle = [cssStyles["font-color-red"]];
+      buttonClass = cssStyles.red;
 
       persons = (
         <div className="person-container">
@@ -75,7 +68,7 @@ class App extends Component {
         <h1 className={titleStyle.join(' ')}>LOADED REACT APP...</h1>
 
         <button
-          style={buttonStyle}
+          className={buttonClass}
           onClick={() => this.togglePersonHandler()}>Toggle person list
         </button>
 

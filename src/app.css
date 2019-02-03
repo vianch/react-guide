@@ -14,3 +14,26 @@
 .bold {
   font-weight: bold;
 }
+
+.app-wrapper button {
+  padding: 15px;
+  background: #8EB307;
+  font: inherit;
+  cursor: pointer;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.app-wrapper button:hover {
+  background: lightgreen;
+  color: black;
+}
+
+.app-wrapper button.red {
+  background: #AB2108;
+}
+
+.app-wrapper button.red:hover {
+  background: pink;
+  color: black;
+}
