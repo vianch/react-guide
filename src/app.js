@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import './app.css';
+import cssStyles from './app.css';
 import Person from './person/person'
 
 class App extends Component {
@@ -43,17 +43,16 @@ class App extends Component {
       backgroundColor: '#8EB307',
       color: 'white',
       font: 'inherit',
-      boder: '1px solid blue',
       padding: '8px',
       cursor: 'pointer',
       marginBottom: '10px',
     };
-    let titleStyle = ['font-color-green'];
+    let titleStyle = [cssStyles["font-color-green"]];
     let persons = null;
 
     if (this.state.showPersons) {
       buttonStyle.backgroundColor = '#AB2108';
-      titleStyle = ['font-color-red'];
+      titleStyle = [cssStyles["font-color-red"]];
 
       persons = (
         <div className="person-container">
@@ -72,7 +71,7 @@ class App extends Component {
     }
 
     return (
-      <div className="app-wrapper">
+      <div className={cssStyles["app-wrapper"]}>
         <h1 className={titleStyle.join(' ')}>LOADED REACT APP...</h1>
 
         <button
