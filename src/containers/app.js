@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, { PureComponent } from 'react';
 
 import cssStyles from './app.css';
 import Persons from '../components/persons/persons'
 import Cockpit from '../components/cockpit/cockpit'
 import ErrorBoundary from '../components/error-boundary/error-boundary';
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +14,7 @@ class App extends Component {
         { id: '5bbcc9e7-2041-417f-a696-e8adf302a883', name: 'Alberto', age: 31 },
         { id: '5778a524-71dd-428a-9d45-0a63ee91cbcf', name: 'Juliana', age: 22 },
       ],
+      showPersons: false,
     };
 
     console.log(`1. [app.js].constructor() / props:`, this.props);
