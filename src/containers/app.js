@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 
 import cssStyles from './app.css';
-import Person from './person/person'
-import ErrorBoundary from './error-boundary/error-boundary';
+import Persons from '../components/persons/persons'
+import Cockpit from '../components/cockpit/cockpit'
+import ErrorBoundary from '../components/error-boundary/error-boundary';
 
 class App extends Component {
   state = {
@@ -49,33 +50,24 @@ class App extends Component {
 
       persons = (
         <div className="person-container">
-          {this.state.persons.map( (person, index) => {
-            return (
-              <ErrorBoundary>
-                <Person
-                  name={person.name}
-                  age={person.age}
-                  deletePersonHandler={this.deletePersonHandler.bind(this, index)}
-                  onInpuntChange={ event => this.nameChangedHandler(event, person.id)}
-                  key={person.id}/>
-              </ErrorBoundary>
-            );
-          })}
+          <Persons
+            persons = { this.state.persons }
+            deletePersonEvent={ this.deletePersonHandler.bind(this) }
+            nameChangedEvent={ this.nameChangedHandler.bind(this) } />
         </div>
       );
     }
 
     return (
-      <div className={cssStyles["app-wrapper"]}>
-        <h1 className={titleStyle.join(' ')}>LOADED REACT APP...</h1>
-
-        <button
-          className={buttonClass}
-          onClick={() => this.togglePersonHandler()}>Toggle person list
-        </button>
-
-        { persons }
-      </div>
+      <ErrorBoundary>
+        <div className={cssStyles["app-wrapper"]}>
+          <Cockpit
+            titleStyle={titleStyle}
+            buttonClass={buttonClass}
+            togglePersonHandler={ this.togglePersonHandler.bind(this) }/>
+          { persons }
+        </div>
+      </ErrorBoundary>
     );
   }
 }
