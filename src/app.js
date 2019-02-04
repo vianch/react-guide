@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import cssStyles from './app.css';
 import Person from './person/person'
+import ErrorBoundary from './error-boundary/error-boundary';
 
 class App extends Component {
   state = {
@@ -25,7 +26,6 @@ class App extends Component {
     });
     const persons = [ ...this.state.persons ];
     persons[personIndex].name = event.target.value;
-
 
     this.setState({
       persons,
@@ -51,12 +51,14 @@ class App extends Component {
         <div className="person-container">
           {this.state.persons.map( (person, index) => {
             return (
-              <Person
-                name={person.name}
-                age={person.age}
-                deletePersonHandler={this.deletePersonHandler.bind(this, index)}
-                onInpuntChange={ event => this.nameChangedHandler(event, person.id)}
-                key={person.id}/>
+              <ErrorBoundary>
+                <Person
+                  name={person.name}
+                  age={person.age}
+                  deletePersonHandler={this.deletePersonHandler.bind(this, index)}
+                  onInpuntChange={ event => this.nameChangedHandler(event, person.id)}
+                  key={person.id}/>
+              </ErrorBoundary>
             );
           })}
         </div>
