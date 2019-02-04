@@ -62,6 +62,7 @@ class App extends Component {
       <ErrorBoundary>
         <div className={cssStyles["app-wrapper"]}>
           <Cockpit
+            title={ this.props.appTitle }
             titleStyle={titleStyle}
             buttonClass={buttonClass}
             togglePersonHandler={ this.togglePersonHandler.bind(this) }/>
