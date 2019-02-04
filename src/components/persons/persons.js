@@ -19,8 +19,29 @@ class Persons extends Component {
   }
 
   componentWillUnmount() {
-    // Component is about to get removed => Perform any cleanup work here!
     console.log('5. [persons.js].componentWillUnmount() I\'m about to be removed!');
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    console.log(`\n1. [persons.js].componentWillReceiveProps / nextProps: `, nextProps);
+  }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    console.log(`\n2. [persons.js].shouldComponentUpdate / nextProps: `, nextProps);
+    console.log(`2. [persons.js].shouldComponentUpdate / nextState: `, nextState);
+
+    return true;
+  }
+
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    console.log(`\n3. [persons.js].componentWillUpdate / nextProps: `, nextProps);
+    console.log(`3. [persons.js].componentWillUpdate / nextProps: `, nextProps);
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(`\n4. [persons.js].componentDidUpdate / prevProps: `, prevProps);
+    console.log(`4. [persons.js].componentDidUpdate / prevState: `, prevState);
+    console.log(`4. [persons.js].componentDidUpdate / snapshot: `, snapshot);
   }
 
   render() {
