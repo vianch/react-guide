@@ -5,6 +5,7 @@ import Aux from '../../../hoc/aux';
 import auxiliarWithClass from '../../../hoc/auxiliar-with-class';
 
 import personStyle from './person.css';
+import { AuthContext } from "../../../containers/app";
 
 class Person extends Component {
   constructor(props) {
@@ -39,6 +40,10 @@ class Person extends Component {
 
     return (
       <Aux>
+        <AuthContext.Consumer>
+          { auth => auth ? <p>You rock! now the system is online... </p>: null }
+        </AuthContext.Consumer>
+
         <p onClick={ this.props.deletePersonHandler }>this is { this.props.name } with { this.props.age } years old { this.props.children }</p>
         <input
           ref={ this.inputElement }

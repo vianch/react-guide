@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Aux from '../../hoc/aux';
+import { AuthContext } from "../../containers/app";
 
 const cockpit = (props) => {
   return (
@@ -13,6 +14,12 @@ const cockpit = (props) => {
         className={ props.buttonClass }
         onClick={() => props.togglePersonHandler()}>Toggle person list
       </button>
+
+      <AuthContext.Consumer>
+        { auth => !auth ? <button onClick={() => props.onLogin()}> LOG IN </button>: null }
+      </AuthContext.Consumer>
+
+
     </Aux>
   );
 };

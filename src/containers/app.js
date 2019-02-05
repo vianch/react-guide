@@ -5,6 +5,8 @@ import Persons from '../components/persons/persons'
 import Cockpit from '../components/cockpit/cockpit'
 import ErrorBoundary from '../components/error-boundary/error-boundary';
 
+export const AuthContext = React.createContext(false);
+
 class App extends PureComponent {
   constructor(props) {
     super(props);
@@ -16,6 +18,7 @@ class App extends PureComponent {
       ],
       showPersons: false,
       toggleClickCount: 0,
+      authenticated: false,
     };
 
     console.log(`1. [app.js].constructor() / props:`, this.props);
@@ -58,6 +61,10 @@ class App extends PureComponent {
     })
   }
 
+  onLogin = () => {
+    this.setState({ authenticated: true });
+  };
+
   render() {
     console.log(`3. [app.js].render()`);
 
@@ -80,18 +87,21 @@ class App extends PureComponent {
     }
 
     return (
-        <div className={cssStyles["app-wrapper"]}>
-          <p>Toggle click count: {this.state.toggleClickCount}</p>
+      <div className={cssStyles["app-wrapper"]}>
+        <p>Toggle click count: {this.state.toggleClickCount}</p>
 
-          <ErrorBoundary>
-          <Cockpit
-            title={ this.props.appTitle }
-            titleStyle={titleStyle}
-            buttonClass={buttonClass}
-            togglePersonHandler={ this.togglePersonHandler.bind(this) }/>
-          { persons }
-          </ErrorBoundary>
-        </div>
+        <ErrorBoundary>
+          <AuthContext.Provider value={ this.state.authenticated }>
+            <Cockpit
+              title={ this.props.appTitle }
+              titleStyle={titleStyle}
+              buttonClass={buttonClass}
+              onLogin = { this.onLogin }
+              togglePersonHandler={ this.togglePersonHandler.bind(this) }/>
+            { persons }
+          </AuthContext.Provider>
+        </ErrorBoundary>
+      </div>
     );
   }
 }
