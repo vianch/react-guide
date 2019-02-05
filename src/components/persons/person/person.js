@@ -9,9 +9,9 @@ import personStyle from './person.css';
 class Person extends Component {
   constructor(props) {
     super(props);
+    this.inputElement = React.createRef();
 
     console.log(`1. [person.js].constructor() / props:`, this.props);
-    console.log(`1. [person.js].constructor() / state:`, this.state);
   }
 
   componentWillMount() {
@@ -21,7 +21,7 @@ class Person extends Component {
   componentDidMount() {
     console.log(`4. [person.js].componentDidMount()`);
     if (this.props.position === 1) {
-      this.inputElement.focus();
+      this.inputElement.current.focus();
     }
   }
 
@@ -30,6 +30,9 @@ class Person extends Component {
     console.log('5. [person.js].componentWillUnmount() I\'m about to be removed!');
   }
 
+  focus() {
+    this.inputElement.current.focus();
+  }
 
   render() {
     console.log(`3. [person.js].render()`);
@@ -38,7 +41,7 @@ class Person extends Component {
       <Aux>
         <p onClick={ this.props.deletePersonHandler }>this is { this.props.name } with { this.props.age } years old { this.props.children }</p>
         <input
-          ref={ (input) => { this.inputElement = input; } }
+          ref={ this.inputElement }
           type="text"
           onChange={ this.props.onInputChange }
           maxLength="15"

@@ -5,17 +5,19 @@ import Person from "./person/person";
 class Persons extends PureComponent {
   constructor(props) {
     super(props);
+    this.lastPersonRef = React.createRef();
 
     console.log(`1. [persons.js].constructor() / props:`, this.props);
     console.log(`1. [persons.js].constructor() / state:`, this.state);
   }
 
-  componentWillMount() {
-    console.log(`2. [persons.js].componentWillMount()`);
+  componentDidMount() {
+    console.log( '[Persons.js] Inside componentDidMount()' );
+    this.lastPersonRef.current.focus();
   }
 
-  componentDidMount() {
-    console.log(`4. [persons.js].componentDidMount()`);
+  componentWillMount() {
+    console.log(`2. [persons.js].componentWillMount()`);
   }
 
   componentWillUnmount() {
@@ -45,6 +47,7 @@ class Persons extends PureComponent {
           name={ person.name }
           age={ person.age }
           position={ index }
+          ref={this.lastPersonRef}
           deletePersonHandler={ () => this.props.deletePersonEvent(index) }
           onInputChange={ event => this.props.nameChangedEvent(event, person.id) }
           key={person.id}/>
