@@ -76,16 +76,16 @@ class App extends PureComponent {
     }
 
     return (
-      <ErrorBoundary>
         <div className={cssStyles["app-wrapper"]}>
+          <ErrorBoundary>
           <Cockpit
             title={ this.props.appTitle }
             titleStyle={titleStyle}
             buttonClass={buttonClass}
             togglePersonHandler={ this.togglePersonHandler.bind(this) }/>
           { persons }
+          </ErrorBoundary>
         </div>
-      </ErrorBoundary>
     );
   }
 }

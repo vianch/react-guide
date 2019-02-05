@@ -1,9 +1,11 @@
 import React from 'react';
 
-const auxiliarWithClass = props => (
-  <div className={ props.classes }>
-    { props.children }
-  </div>
-);
+const axuiliarWithClass = (WrappedComponent, className) => {
+  return props => (
+    <div className={className}>
+      <WrappedComponent { ...props }/>
+    </div>
+  );
+};
 
-export default auxiliarWithClass;
+export default axuiliarWithClass;
