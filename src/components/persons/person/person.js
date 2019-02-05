@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import AuxiliarWithClass from '../../../hoc/auxiliar-with-class';
+
 import personStyle from './person.css';
 
 class Person extends Component {
@@ -28,11 +30,10 @@ class Person extends Component {
     console.log(`3. [person.js].render()`);
 
     return (
-      <div className={personStyle["person-wrapper"]}>
+      <AuxiliarWithClass classes={personStyle["person-wrapper"]}>
         <p onClick={ this.props.deletePersonHandler }>this is { this.props.name } with { this.props.age } years old { this.props.children }</p>
-
         <input type="text" onChange={ this.props.onInpuntChange } maxLength="15" defaultValue={this.props.name} />
-      </div>
+      </AuxiliarWithClass>
     );
   }
 }
