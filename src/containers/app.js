@@ -15,6 +15,7 @@ class App extends PureComponent {
         { id: '5778a524-71dd-428a-9d45-0a63ee91cbcf', name: 'Juliana', age: 22 },
       ],
       showPersons: false,
+      toggleClickCount: 0,
     };
 
     console.log(`1. [app.js].constructor() / props:`, this.props);
@@ -49,8 +50,11 @@ class App extends PureComponent {
   }
 
   togglePersonHandler() {
-    this.setState({
-      showPersons: !this.state.showPersons,
+    this.setState((previousState, props) => {
+      return {
+        showPersons: !this.state.showPersons,
+        toggleClickCount: ++previousState.toggleClickCount,
+      };
     })
   }
 
@@ -77,6 +81,8 @@ class App extends PureComponent {
 
     return (
         <div className={cssStyles["app-wrapper"]}>
+          <p>Toggle click count: {this.state.toggleClickCount}</p>
+
           <ErrorBoundary>
           <Cockpit
             title={ this.props.appTitle }
