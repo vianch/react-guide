@@ -25,12 +25,26 @@ class App extends PureComponent {
     console.log(`1. [app.js].constructor() / state:`, this.state);
   }
 
-  componentWillMount() {
-    console.log(`2. [app.js].componentWillMount()`);
-  }
-
   componentDidMount() {
     console.log(`4. [app.js].componentDidMount()`);
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(
+      "[UPDATE App.js] App.getDerivedStateFromProps",
+      nextProps,
+      prevState
+    );
+
+    return prevState;
+  }
+
+  componentDidUpdate() {
+    console.log(`4. [app.js].componentDidUpdate()`);
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log("[UPDATE App.js] getSnapshotBeforeUpdate")
   }
 
   deletePersonHandler(personIndex) {
