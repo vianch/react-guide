@@ -42,10 +42,11 @@ class Persons extends PureComponent {
     return this.props.persons.map( (person, index) => {
       return (
         <Person
-          name={person.name}
-          age={person.age}
+          name={ person.name }
+          age={ person.age }
+          position={ index }
           deletePersonHandler={ () => this.props.deletePersonEvent(index) }
-          onInpuntChange={ event => this.props.nameChangedEvent(event, person.id) }
+          onInputChange={ event => this.props.nameChangedEvent(event, person.id) }
           key={person.id}/>
       );
     });

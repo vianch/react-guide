@@ -20,6 +20,9 @@ class Person extends Component {
 
   componentDidMount() {
     console.log(`4. [person.js].componentDidMount()`);
+    if (this.props.position === 1) {
+      this.inputElement.focus();
+    }
   }
 
   componentWillUnmount() {
@@ -34,7 +37,12 @@ class Person extends Component {
     return (
       <Aux>
         <p onClick={ this.props.deletePersonHandler }>this is { this.props.name } with { this.props.age } years old { this.props.children }</p>
-        <input type="text" onChange={ this.props.onInpuntChange } maxLength="15" defaultValue={this.props.name} />
+        <input
+          ref={ (input) => { this.inputElement = input; } }
+          type="text"
+          onChange={ this.props.onInputChange }
+          maxLength="15"
+          defaultValue={this.props.name} />
       </Aux>
     );
   }
@@ -43,7 +51,8 @@ class Person extends Component {
 Person.propTypes = {
   name: PropTypes.string,
   age: PropTypes.number,
-  onInpuntChange: PropTypes.func,
+  position: PropTypes.number,
+  onInputChange: PropTypes.func,
   deletePersonHandler: PropTypes.func,
 };
 
