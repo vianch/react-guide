@@ -26,14 +26,6 @@ class Persons extends PureComponent {
     console.log(`\n1. [persons.js].componentWillReceiveProps / nextProps: `, nextProps);
   }
 
-  /*shouldComponentUpdate(nextProps, nextState, nextContext) {
-    console.log(`\n2. [persons.js].shouldComponentUpdate / nextProps: `, nextProps);
-    console.log(`2. [persons.js].shouldComponentUpdate / nextState: `, nextState);
-
-    return nextProps.persons !== this.props.persons
-    //return true;
-  }*/
-
   componentWillUpdate(nextProps, nextState, nextContext) {
     console.log(`\n3. [persons.js].componentWillUpdate / nextProps: `, nextProps);
     console.log(`3. [persons.js].componentWillUpdate / nextProps: `, nextProps);
@@ -59,5 +51,7 @@ class Persons extends PureComponent {
     });
   }
 }
+
+
 
 export default Persons;

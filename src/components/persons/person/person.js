@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Aux from '../../../hoc/aux';
 import auxiliarWithClass from '../../../hoc/auxiliar-with-class';
@@ -38,5 +39,12 @@ class Person extends Component {
     );
   }
 }
+
+Person.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number,
+  onInpuntChange: PropTypes.func,
+  deletePersonHandler: PropTypes.func,
+};
 
 export default auxiliarWithClass(Person, personStyle["person-wrapper"]);
