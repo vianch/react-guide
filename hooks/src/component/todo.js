@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const todo = props => {
   const [todoName, setTodoName] = useState('');
   const [todoList, setTodoList] = useState([]);
+  const firebaseUrl = 'https://test-123.firebaseio.com/todo.json';
 
   const inputChangeHandler = event => {
     setTodoName(event.target.value);
@@ -10,7 +12,32 @@ const todo = props => {
 
   const todoAddHandler = () => {
     setTodoList(todoList.concat(todoName));
+
+    axios.post(firebaseUrl, {todoData: todoName})
+      .then(response => {
+        console.log('firebase response: ', response);
+      }).catch(error => {
+        console.log('firebase error response: ', error);
+      });
   };
+
+
+  useEffect(() => {
+    console.log('useEffect');
+    axios.get(firebaseUrl).then(response => {
+      const todos = [];
+
+      for (const key in response.data) {
+        todos.push(response.data[key].todoData);
+      }
+
+      setTodoList(todos);
+    });
+
+    return () => {
+      console.log('clean up');
+    };
+  }, []);
 
   return <React.Fragment>
     <input

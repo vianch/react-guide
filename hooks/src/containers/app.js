@@ -10,9 +10,6 @@ class App extends PureComponent {
     this.state = {
 
     };
-
-    console.log(`1. [app.js].constructor() / props:`, this.props);
-    console.log(`1. [app.js].constructor() / state:`, this.state);
   }
 
   componentDidMount() {
