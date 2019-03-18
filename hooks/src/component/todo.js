@@ -4,7 +4,7 @@ import axios from 'axios';
 const todo = props => {
   const [todoName, setTodoName] = useState('');
   const [todoList, setTodoList] = useState([]);
-  const firebaseUrl = 'https://test-123.firebaseio.com/todo.json';
+  const firebaseUrl = 'https://test-ae58d.firebaseio.com/todo.json';
 
   const inputChangeHandler = event => {
     setTodoName(event.target.value);
@@ -23,7 +23,6 @@ const todo = props => {
 
 
   useEffect(() => {
-    console.log('useEffect');
     axios.get(firebaseUrl).then(response => {
       const todos = [];
 

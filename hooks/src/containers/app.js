@@ -1,30 +1,36 @@
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 
 import Todo from '../component/todo';
+import Header from '../component/header';
+import Auth from '../component/auth';
+import AuthContext from './auth-context';
 
-export const AuthContext = React.createContext(false);
+const app = props => {
+  const [page, setPage] = useState('auth');
+  const [authStatus, setAuthStatus] = useState(false);
 
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
+  const switchPage = (pageName) => {
+    setPage(pageName);
+  };
 
-    };
-  }
+  const logIn = () => {
+    setAuthStatus(true);
+  };
 
-  componentDidMount() {
-    console.log(`4. [app.js].componentDidMount()`);
-  }
+  return (
+    <div className="App">
+    <AuthContext.Provider value={{status: authStatus, login: logIn}}>
+      <Header
+          onLoadTodos={switchPage.bind(this, 'todos')}
+          onLoadAuth={switchPage.bind(this, 'auth')}
+        />
+        <hr></hr>
 
-  render() {
+        {page === 'auth' ? <Auth /> :  <Todo />}
+    </AuthContext.Provider>
 
-    return (
-      <div>
-        <p>Hi welcome to todos list</p>
-        <Todo />
-      </div>
-    );
-  }
-}
+  </div>
+  );
+};
 
-export default App;
+export default app;
